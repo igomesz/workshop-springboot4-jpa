@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -88,6 +89,14 @@ public class Order implements Serializable {
 
     public Set<OrderItem> getItems() {
         return items;
+    }
+
+    public Double getTotal(){
+        double sum = 0;
+        for (OrderItem p : items){
+             sum += p.getSubTotal();
+        }
+        return sum;
     }
 
     @Override
